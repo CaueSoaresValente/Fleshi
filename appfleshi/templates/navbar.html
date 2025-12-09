@@ -1,5 +1,18 @@
-<nav>
-        <a href="{{ url_for('feed') }}">Feed</a>
-        <a href="{{ url_for('profile', user_id=current_user.id) }}">Perfil</a>
-        <a href="{{ url_for('logout') }}">Sair</a>
+<nav class="main-navbar">
+    <div class="navbar-brand-and-links">
+
+        <div class="navbar-brand">
+            <img src="../static/posts_photos/defult.png" alt="Foto de perfil">
+            <p class="nomelogo">Fléshi</p>
+        </div>
+
+        <div class="navbar-links">
+            <a href="{{ url_for('feed') }}" class="nav-link">Feed</a>
+            <a href="{{ url_for('profile', user_id=current_user.id) }}" class="nav-link">Perfil</a>
+        </div>
+    </div>
+
+    <div class="navbar-actions">
+        <a href="{{ url_for('logout') }}" class="nav-logout-link">Sair</a>
+    </div>
 </nav>

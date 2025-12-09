@@ -3,15 +3,318 @@
 {% block title %}
     Fléshi - Feed
 {% endblock %}
+{% block style %}
+        /* Paleta de Cores:
+           --purple-intense: #673AB7 (Roxo Principal)
+           --magenta-vibrant: #E91E63 (Rosa/Ação)
+           --off-white: #FAFAFA (Fundo Suave)
+           --text-dark: #212121 (Texto)
+        */
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            background-color: #FAFAFA;
+            overflow-x: hidden;
+        }
+
+        .action-buttons button, .action-buttons a {
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s;
+            font-size: 0.9em;
+        }
+
+        .btn-follow {
+            background-color: #673AB7;
+            color: white;
+            border: 2px solid #673AB7;
+        }
+        .btn-follow:hover {
+            background-color: #5E35B1;
+        }
+
+        .btn-edit {
+            background-color: white;
+            color: #E91E63;
+            border: 2px solid #E91E63;
+        }
+        .btn-edit:hover {
+            background-color: #E91E631A;
+        }
+
+        .content-nav {
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+            border-bottom: 1px solid #EDE7F6;
+            margin-bottom: 20px;
+        }
+
+        .content-nav a {
+            color: #757575;
+            padding: 10px 0;
+            font-weight: 600;
+            text-decoration: none;
+            flex-grow: 1;
+            text-align: center;
+            border-bottom: 3px solid transparent;
+        }
+
+        .content-nav .active {
+            color: #673AB7;
+            border-bottom: 3px solid #673AB7;
+        }
+
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 100px;
+            width: 90%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        .photos-grid img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1
+            object-fit: cover;
+        }
+
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        .upload-form input[type="submit"] {
+            background-color: #673AB7;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+
+.main-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: #FFFFFF;
+    padding: 10px 40px;
+    border-bottom: 1px solid #EDE7F6;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+}
+
+
+.navbar-brand-and-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #673AB7;
+}
+
+.navbar-brand img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+.navbar-links {
+    display: flex;
+    gap: 20px;
+    color: #000000;
+
+}
+
+.nav-link {
+    color: #212121;
+    text-decoration: none;
+    padding: 5px 0;
+    transition: color 0.2s;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: #673AB7;
+}
+
+.nav-logout-link {
+    color: #E91E63;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 5px 10px;
+    border: 1px solid #E91E63;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.nav-logout-link:hover {
+    background-color: #E91E631A;
+}
+.nomelogo{
+    margin: 0px;
+    color: #771d76;
+}
+
+@media (max-width: 768px) {
+    .main-navbar {
+        padding: 10px 15px;
+    }
+    .navbar-links {
+       display: none;
+    }
+}
+h1{
+    color: #c9c9c9 !important;
+}
+.photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 100%;
+            margin-top: 20px;
+
+        }
+    .photos-grid a{
+        display:flex;
+        justify-content: center;
+    }
+    .imagens{
+            width: 100% !important;
+            height: 70% !important;
+            object-fit: cover;
+            display: block;
+    }
+.curtir{
+    width: 20px !important;
+    height: 20px !important;
+    cursor: pointer;
+}
+.curtir.clicado {
+    background: radial-gradient(circle at center,
+        #E1BEE7 0%,
+        #CE93D8 10%,
+        #9C27B0 40%,
+        #6A1B9A 70%,
+        #4A148C 100%
+    );
+    border-radius: 50%
+}
+
+.clicado{
+  background: radial-gradient(circle at center,
+        #E1BEE7 0%,
+        #CE93D8 10%,
+        #9C27B0 40%,
+        #6A1B9A 70%,
+        #4A148C 100%
+    );
+    border-radius: 50%
+
+}
+
+
+
+{% endblock %}
 
 {% block body %}
-    {% include "navbar.html" %}
-    <h1>Feed Principal</h1>
 
-    {% for photo in photos %}
-            <a href="{{ url_for('profile', user_id=photo.user_id) }}">
-                <img src="{{url_for('static',filename='posts_photos/'~ photo.file_name)}}" alt="Imagem defult">
-            </a>
-    {% endfor %}
+    <div class="container">
+        {% include "navbar.html" %}
+
+        <h1 class="my-3">Feed </h1>
+
+        <div class="container photos-grid">
+
+            {% for photo in photos %}
+
+
+            <div>
+
+                <a href="{{ url_for('profile', user_id=photo.user_id) }}" class="imagens">
+                    <img src="{{url_for('static',filename='posts_photos/'~ photo.file_name)}}" alt="Imagem defult">
+                </a>
+                {% if photo.likes | selectattr('user_id', 'equalto', current_user.id) | list %}
+                    <img src="{{ url_for('static', filename='obturador-da-camera.png') }}"
+                         data-photo-id="{{ photo.id }}"
+                         class="curtir clicado mt-4">
+                {% else %}
+                    <img src="{{ url_for('static', filename='obturador-da-camera.png') }}"
+                         data-photo-id="{{ photo.id }}"
+                         class="curtir mt-4">
+                {% endif %}
+
+
+            </div>
+
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <script>
+
+            document.querySelectorAll('.curtir').forEach(btn => {
+            btn.addEventListener('click', async function () {
+
+                const photoId = this.dataset.photoId;
+
+                // Enviar pro backend
+                const response = await fetch("/like", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ photo_id: photoId })
+                });
+
+                const result = await response.json();
+
+                // Atualiza visualmente
+                if (result.liked) {
+                    this.classList.add("clicado");
+                } else {
+                    this.classList.remove("clicado");
+                }
+            });
+        });
+
+
+
+
+    </script>
+
 
 {% endblock %}

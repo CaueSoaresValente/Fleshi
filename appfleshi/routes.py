@@ -1,9 +1,9 @@
-from flask import render_template, url_for, redirect
+from flask import render_template, url_for, redirect, request
 from flask_login import login_required, current_user, login_user, logout_user
 from sqlalchemy.testing.suite.test_reflection import users
 from appfleshi import app, database, bcrypt
 from appfleshi.forms import LoginForm, RegisterForm, PhotoForm
-from appfleshi.models import User, Photo
+from appfleshi.models import User, Photo, Like
 import os
 from werkzeug.utils import secure_filename
 
@@ -51,11 +51,37 @@ def profile(user_id):
     else:
         user = User.query.get(int(user_id))
         return render_template('profile.html', user=user, form=None)
+
+
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('homepage'))
+
+
+@app.route("/like", methods=['POST'])
+@login_required
+def like():
+    data = request.json
+    photo_id = int(data.get('photo_id'))
+
+    # verifica se existe like
+    existing = Like.query.filter_by(user_id=current_user.id, photo_id=photo_id).first()
+
+    if existing:
+        # remove like
+        database.session.delete(existing)
+        database.session.commit()
+        return {"liked": False}
+
+    else:
+        # cria like
+        new_like = Like(user_id=current_user.id, photo_id=photo_id)
+        database.session.add(new_like)
+        database.session.commit()
+        return {"liked": True}
+
 
 @app.route("/feed")
 @login_required
