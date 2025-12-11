@@ -66,21 +66,28 @@ def like():
     data = request.json
     photo_id = int(data.get('photo_id'))
 
-    # verifica se existe like
     existing = Like.query.filter_by(user_id=current_user.id, photo_id=photo_id).first()
 
     if existing:
-        # remove like
+        # remover like
         database.session.delete(existing)
         database.session.commit()
-        return {"liked": False}
-
+        liked = False
     else:
-        # cria like
+        # criar like
         new_like = Like(user_id=current_user.id, photo_id=photo_id)
         database.session.add(new_like)
         database.session.commit()
-        return {"liked": True}
+        liked = True
+
+    # contar likes atualizados
+    likes_count = Like.query.filter_by(photo_id=photo_id).count()
+
+    return {
+        "success": True,
+        "liked": liked,
+        "likes_count": likes_count
+    }
 
 
 @app.route("/feed")
