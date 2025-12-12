@@ -6,19 +6,95 @@
 
 {% block style %}
 <style>
-        /* Paleta de Cores:
-           --purple-intense: #673AB7 (Roxo Principal)
-           --magenta-vibrant: #E91E63 (Rosa/Ação)
-           --off-white: #FAFAFA (Fundo Suave)
-           --text-dark: #212121 (Texto)
-        */
+/* -------------------------------
+   VARIÁVEIS TEMA PADRÃO (CLARO)
+--------------------------------*/
+:root {
+    --bg: #FAFAFA; /* Fundo Claro */
+    --text: #212121;
+    --card: #FFFFFF;
+    --border: #EDE7F6;
+    --text-muted: #757575;
+    --link-hover: #5E35B1;
+    --action-color: #E91E63;
+}
 
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-            background-color: #FAFAFA;
+/* -------------------------------
+   VARIÁVEIS TEMA ESCURO (Dark Mode) - CORRIGIDO O FUNDO
+--------------------------------*/
+.dark-theme {
+    --bg: #121212; /* Fundo Escuro/Preto */
+    --text: #EAEAEA;
+    --card: #1E1E1E;
+    --border: #333333;
+    --text-muted: #BDBDBD;
+    --link-hover: #9575CD;
+    --action-color: #FF80AB;
+
+    /* APLICAÇÃO FORÇADA do background-color (Se a variável não funcionar sozinha) */
+    background-color: var(--bg) !important;
+}
+
+/* -------------------------------
+   ESTILOS GLOBAIS E APLICAÇÃO DE TEMA
+   Esta regra define o tema CLARO inicial e a transição.
+--------------------------------*/
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+
+    /* Aplicação Padrão via variável */
+    background-color: var(--bg);
+    color: var(--text);
+    transition: background-color .25s ease, color .25s ease;
+}
+
+
+/* Botão minimalista */
+.theme-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    margin-left: 10px;
+    color: var(--text);
+}
+
+/* -------------------------------
+   ELEMENTOS GERAIS/NAVBAR - AJUSTADOS
+--------------------------------*/
+.main-navbar,
+.post-card,
+.post-image-wrapper {
+    background-color: var(--card) !important;
+}
+
+h1.feed-title,
+.user-link,
+.likes-count-text,
+.nav-link {
+    color: var(--text) !important;
+}
+
+.main-navbar,
+.content-nav {
+    border-color: var(--border) !important;
+}
+
+        .container.feed-container {
+            width: 95%;
+            max-width: 550px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .main-navbar {
+            background-color: var(--card);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 40px;
         }
 
         .container.divmain {
@@ -30,8 +106,9 @@
             padding-bottom: 50px;
         }
 
+        /* PERFIL CARD - AJUSTADO PARA USAR VARIÁVEIS */
         .profile-card {
-            background-color: #FFFFFF;
+            background-color: var(--card);
             width: 90%;
             max-width: 600px;
             padding: 20px;
@@ -57,13 +134,13 @@
             object-fit: cover;
         }
 
+        /* USERNAME - AJUSTADO PARA USAR VARIÁVEIS */
         .username {
             font-size: 1.5em;
             font-weight: bold;
-            color: #212121;
+            color: var(--text);
             margin-bottom: 5px;
         }
-        /* .bio { MANTIDO OU REMOVIDO CONFORME NECESSÁRIO } */
 
         .action-buttons {
             display: flex;
@@ -88,13 +165,13 @@
             border: 2px solid #673AB7;
         }
         .btn-follow:hover {
-            background-color: #5E35B1;
+            background-color: var(--link-hover);
         }
 
         .btn-edit {
-            background-color: white;
-            color: #E91E63;
-            border: 2px solid #E91E63;
+            background-color: var(--card);
+            color: var(--action-color);
+            border: 2px solid var(--action-color);
         }
         .btn-edit:hover {
             background-color: #E91E631A;
@@ -104,12 +181,12 @@
             display: flex;
             width: 100%;
             justify-content: space-around;
-            border-bottom: 1px solid #EDE7F6;
+            border-bottom: 1px solid var(--border);
             margin-bottom: 20px;
         }
 
         .content-nav a {
-            color: #757575;
+            color: var(--text-muted);
             padding: 10px 0;
             font-weight: 600;
             text-decoration: none;
@@ -131,7 +208,7 @@
             width: 90%;
             max-width: 100%;
             margin-top: 20px;
-            justify-content: center; /* Centraliza os itens na grade */
+            justify-content: center;
 
         }
 
@@ -169,10 +246,10 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            background-color: #FFFFFF;
+            background-color: var(--card);
             padding: 10px 40px;
-            border-bottom: 1px solid #EDE7F6;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08); /* Sombra mais refinada */
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
             box-sizing: border-box;
         }
 
@@ -204,12 +281,12 @@
         .navbar-links {
             display: flex;
             gap: 20px;
-            color: #000000;
+            color: var(--text);
 
         }
 
         .nav-link {
-            color: #212121;
+            color: var(--text);
             text-decoration: none;
             padding: 5px 0;
             transition: color 0.2s;
@@ -219,27 +296,25 @@
         .nav-link:hover {
             color: #673AB7;
         }
-.caveat-brush-regular {
-  font-family: "Caveat Brush", cursive;
-  font-weight: bold !important;
-  font-style: normal;
-}
-.caveat-brush-regulardois {
-  font-family: "Caveat Brush", cursive;
-  font-weight: 400;
-  font-style: normal;
-}
-.tamanhologo{
-width: 32px;
-
-}
-
+        .caveat-brush-regular {
+          font-family: "Caveat Brush", cursive;
+          font-weight: bold !important;
+          font-style: normal;
+        }
+        .caveat-brush-regulardois {
+          font-family: "Caveat Brush", cursive;
+          font-weight: 400;
+          font-style: normal;
+        }
+        .tamanhologo{
+            width: 32px;
+        }
         .nav-logout-link {
-            color: #E91E63;
+            color: var(--action-color);
             text-decoration: none;
             font-weight: 600;
             padding: 5px 10px;
-            border: 1px solid #E91E63;
+            border: 1px solid var(--action-color);
             border-radius: 4px;
             transition: background-color 0.2s;
         }
@@ -271,10 +346,10 @@ width: 32px;
         }
 
         .botao-arquivo {
-            background-color: white;
-            color: #E91E63;
+            background-color: var(--card);
+            color: var(--action-color);
             padding: 10px 20px;
-            border: solid 2px #E91E63;
+            border: solid 2px var(--action-color);
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
@@ -285,12 +360,10 @@ width: 32px;
         .botao-arquivo:hover {
             background-color: #E91E631A;
         }
-
-        /* Ajuste do Título "Suas Fotos" */
         h2.photos-title {
-            color: #757575 !important; /* Deixando o título mais discreto */
+            color: var(--text-muted) !important;
             font-weight: 500;
-            border-bottom: 1px solid #EDE7F6;
+            border-bottom: 1px solid var(--border);
             padding-bottom: 5px;
             width: 90%;
             max-width: 600px;
@@ -299,32 +372,30 @@ width: 32px;
         }
 
         h2{
-            color: #c9c9c9 !important;
+            color: var(--text-muted) !important;
             font-weight: 600;
-
         }
 
-        /* --- ESTILOS DE FOTO E LIKES --- */
-
+        /* PHOTO CARD - AJUSTADO PARA USAR VARIÁVEIS */
         .photo-card {
-            background-color: #FFFFFF;
+            background-color: var(--card);
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             overflow: hidden;
-            cursor: pointer; /* Indica que é clicável */
+            cursor: pointer;
             display: flex;
             flex-direction: column;
-            transition: none; /* Remove a transição de hover */
+            transition: none;
         }
 
         .photo-details {
             padding: 10px 15px;
-            background-color: #FFFFFF;
+            background-color: var(--card);
         }
 
         .photo-owner-name {
             font-weight: bold;
-            color: #212121;
+            color: var(--text);
             margin-bottom: 8px;
             font-size: 0.95em;
         }
@@ -335,7 +406,7 @@ width: 32px;
             justify-content: space-between;
             margin-bottom: 5px;
             font-size: 14px;
-            color: #212121;
+            color: var(--text);
             font-weight: 600;
         }
 
@@ -343,15 +414,12 @@ width: 32px;
             display: flex;
             align-items: center;
         }
-
-        /* Ícone de Coração (simulado) */
         .likes-count::before {
             content: '💜';
             margin-right: 5px;
-            color: #E91E63;
+            color: var(--action-color);
             font-size: 1.1em;
             line-height: 1;
-            vertical-align: middle;
             position:relative;
             bottom: 2px;
         }
@@ -374,7 +442,7 @@ width: 32px;
         }
 
         .btn-view-likes:hover {
-            color: #E91E63;
+            color: var(--action-color);
         }
 
         .like-list {
@@ -382,10 +450,10 @@ width: 32px;
             padding: 0;
             margin: 0;
             font-size: 0.85em;
-            color: #757575;
+            color: var(--text-muted);
             max-height: 150px;
             overflow-y: auto;
-            border-top: 1px solid #EEEEEE;
+            border-top: 1px solid var(--border);
             margin-top: 5px;
             padding-top: 5px;
             display: none;
@@ -394,8 +462,6 @@ width: 32px;
         .like-list.show {
             display: block;
         }
-
-        /* --- ESTILOS DO MODAL --- */
         .modal {
             display: none;
             position: fixed;
@@ -434,28 +500,37 @@ width: 32px;
 
         .modal-close:hover,
         .modal-close:focus {
-            color: #E91E63;
+            color: var(--action-color);
             text-decoration: none;
             cursor: pointer;
         }
 
-        /* --- NOVO ESTILO PARA O RODAPÉ DO PROFILE CARD --- */
+        .theme-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            margin-right: 10px;
+            color: inherit;
+        }
+
+
         .profile-card-footer {
             margin-top: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
-            border-top: 1px solid #EDE7F6; /* Linha divisória suave */
+            border-top: 1px solid var(--border);
             padding-top: 15px;
         }
         .profile-card-footer .footer-username {
             font-size: 0.9em;
-            color: #757575;
+            color: var(--text-muted);
             font-weight: 500;
         }
         .profile-card-footer .footer-logout-link {
-            color: #E91E63; /* Rosa/Ação para o botão Sair */
+            color: var(--action-color);
             margin-left: 15px;
             font-size: 0.9em;
             font-weight: 600;
@@ -463,11 +538,8 @@ width: 32px;
             transition: color 0.2s;
         }
         .profile-card-footer .footer-logout-link:hover {
-            color: #673AB7; /* Roxo principal no hover */
+            color: var(--link-hover);
         }
-
-
-
 
     </style>
 {% endblock %}
@@ -551,9 +623,9 @@ width: 32px;
         </div>
 
         <script>
-            // 1. Função para Abrir/Fechar a Lista de Curtidas (Botão)
+
             function toggleLikes(event, listId) {
-                // Previne que o clique no botão ative o clique da foto (abrir modal)
+
                 event.stopPropagation();
 
                 const likeList = document.getElementById(listId);
@@ -568,12 +640,11 @@ width: 32px;
                 }
             }
 
-            // 2. Funções para o Modal/Lightbox (Clique na Foto)
             const modal = document.getElementById("imageModal");
             const modalImg = document.getElementById("img01");
 
             function openModal(imageSrc) {
-                modal.style.display = "flex"; // Usa flex para centralizar
+                modal.style.display = "flex";
                 modalImg.src = imageSrc;
             }
 
@@ -581,12 +652,34 @@ width: 32px;
                 modal.style.display = "none";
             }
 
-            // 3. Fechar modal ao clicar fora da imagem
             modal.onclick = function(event) {
                 if (event.target === modal) {
                     closeModal();
                 }
             }
+document.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme");
+    const btn = document.getElementById("theme-toggle");
+
+    // Se o tema não estiver salvo, configuramos o tema padrão como claro
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-theme");
+        if (btn) btn.textContent = "☀️"; // Tema escuro → Mostrar Sol
+    } else {
+        document.body.classList.remove("dark-theme");
+        if (btn) btn.textContent = "🌙"; // Tema claro → Mostrar Lua
+    }
+});
+
+function toggleTheme() {
+    const btn = document.getElementById("theme-toggle");
+
+    const isDark = document.body.classList.toggle("dark-theme");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+
+    if (btn) btn.textContent = isDark ? "☀️" : "🌙";
+}
+
 
         </script>
         </body>
